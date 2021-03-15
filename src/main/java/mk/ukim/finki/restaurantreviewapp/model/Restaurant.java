@@ -13,7 +13,6 @@ public class Restaurant {
     private Location location;
     private Category category;
     private List<Review> reviews;
-    private Menu menu;
 
     public Restaurant(String name, String description, Location location, Category category) {
         this.name = name;
