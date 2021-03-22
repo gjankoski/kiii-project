@@ -1,2 +1,9 @@
-package mk.ukim.finki.restaurantreviewapp.Repository;public class RestaurantRepository {
+package mk.ukim.finki.restaurantreviewapp.Repository;
+
+import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 }
