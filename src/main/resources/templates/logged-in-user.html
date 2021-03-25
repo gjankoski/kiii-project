@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -11,11 +11,17 @@
     <title>Restaurant Review App</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/heroic-features.css" rel="stylesheet">
+<!--    <link href="../static/css/heroic-features.css" rel="stylesheet">-->
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 56px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link">@Profile email</a>
+                    <a class="nav-link"><th:block th:if="${#request.getRemoteUser() != null}" th:text="${#request.getRemoteUser()}"></th:block></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link">Logout</a>
