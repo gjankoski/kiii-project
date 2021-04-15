@@ -1,2 +1,4 @@
-package mk.ukim.finki.restaurantreviewapp.service.impl;public class ReviewServiceImpl {
+package mk.ukim.finki.restaurantreviewapp.service.impl;
+
+public class ReviewServiceImpl {
 }
