@@ -17,22 +17,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/", "/home", "/assets/**", "/register", "/login").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login").permitAll()
+//                .failureUrl("/login?error=BadCredentials")
+//                .defaultSuccessUrl("/loggedIn", true)
+//                .and()
+//                .logout()
+//                .logoutUrl("/logout")
+//                .clearAuthentication(true)
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//                .logoutUrl("/");
+        http.authorizeRequests()
                 .antMatchers("/", "/home", "/assets/**", "/register", "/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
-                .failureUrl("/login?error=BadCredentials")
-                .defaultSuccessUrl("/home", true)
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .logoutUrl("/");
+                .antMatchers("/h2-console/**").permitAll();
+
+        http.csrf().disable();
     }
 
     @Override
