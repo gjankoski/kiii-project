@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .invalidateHttpSession(true)
 //                .deleteCookies("JSESSIONID")
 //                .logoutUrl("/");
+        http.headers().frameOptions().disable();
         http.authorizeRequests()
                 .antMatchers("/", "/home", "/assets/**", "/register", "/login").permitAll()
                 .antMatchers("/h2-console/**").permitAll();
