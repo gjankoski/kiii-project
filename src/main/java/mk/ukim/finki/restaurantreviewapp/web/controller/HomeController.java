@@ -17,7 +17,7 @@ public class HomeController {
         return "homepage";
     }
 
-    @GetMapping("/home")
+    @GetMapping("home")
     public String getLoggedInPage(Model model, HttpServletRequest request) {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         return "logged-in-user";
