@@ -3,6 +3,7 @@ package mk.ukim.finki.restaurantreviewapp.web.controller;
 import mk.ukim.finki.restaurantreviewapp.model.User;
 import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidUserCredentialsException;
 import mk.ukim.finki.restaurantreviewapp.service.AuthService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
