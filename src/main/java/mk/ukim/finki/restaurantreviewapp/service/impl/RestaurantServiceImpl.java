@@ -5,6 +5,7 @@ import mk.ukim.finki.restaurantreviewapp.Repository.LocationRepository;
 import mk.ukim.finki.restaurantreviewapp.Repository.RestaurantRepository;
 import mk.ukim.finki.restaurantreviewapp.Repository.ReviewRepository;
 import mk.ukim.finki.restaurantreviewapp.model.Category;
+import mk.ukim.finki.restaurantreviewapp.model.Dtos.RestaurantDto;
 import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidCategoryException;
 import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidLocationException;
 import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidRestaurantException;
@@ -48,6 +49,32 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurant = new Restaurant(name,description,delivery, price, location, category);
         this.restaurantRepository.save(restaurant);
         return restaurant;
+    }
+
+    @Override
+    public Restaurant create(RestaurantDto restaurantDto) {
+        Location location = this.locationRepository.findById(restaurantDto.getLocationId()).orElseThrow(InvalidLocationException::new);
+        Category category = this.categoryRepository.findById(restaurantDto.getCategoryId()).orElseThrow(InvalidCategoryException::new);
+        Restaurant restaurant = new Restaurant(restaurantDto.getName(), restaurantDto.getDescription(),
+                restaurantDto.isDelivery(), restaurantDto.getPrice(), location, category);
+        this.restaurantRepository.save(restaurant);
+        return restaurant;
+    }
+
+    @Override
+    public Restaurant update(Long id, RestaurantDto restaurantDto) {
+        Restaurant restaurant = this.restaurantRepository.findById(id).orElseThrow(InvalidRestaurantException::new);
+        Location location = this.locationRepository.findById(restaurantDto.getLocationId()).orElseThrow(InvalidLocationException::new);
+        Category category = this.categoryRepository.findById(restaurantDto.getCategoryId()).orElseThrow(InvalidCategoryException::new);
+        restaurant.setName(restaurantDto.getName());
+        restaurant.setDescription(restaurantDto.getDescription());
+        restaurant.setDelivery(restaurantDto.isDelivery());
+        restaurant.setPrice(restaurant.getPrice());
+        restaurant.setLocation(location);
+        restaurant.setCategory(category);
+        this.restaurantRepository.save(restaurant);
+        return restaurant;
+
     }
 
     @Override
