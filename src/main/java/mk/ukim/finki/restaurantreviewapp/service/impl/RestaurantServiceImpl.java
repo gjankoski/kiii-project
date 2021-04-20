@@ -45,17 +45,30 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Restaurant create(String name, String description, boolean delivery, int price, Long locationId, Long categoryId) {
         Location location = this.locationRepository.findById(locationId).orElseThrow(InvalidLocationException::new);
         Category category = this.categoryRepository.findById(categoryId).orElseThrow(InvalidCategoryException::new);
-        return null;
+        Restaurant restaurant = new Restaurant(name,description,delivery, price, location, category);
+        this.restaurantRepository.save(restaurant);
+        return restaurant;
     }
 
     @Override
     public Restaurant update(Long id, String name, String description, boolean delivery, int price, Long locationId, Long categoryId) {
-        return null;
+        Restaurant restaurant = this.restaurantRepository.findById(id).orElseThrow(InvalidRestaurantException::new);
+        Location location = this.locationRepository.findById(locationId).orElseThrow(InvalidLocationException::new);
+        Category category = this.categoryRepository.findById(categoryId).orElseThrow(InvalidCategoryException::new);
+        restaurant.setName(name);
+        restaurant.setDescription(description);
+        restaurant.setDelivery(delivery);
+        restaurant.setPrice(price);
+        restaurant.setLocation(location);
+        restaurant.setCategory(category);
+        this.restaurantRepository.save(restaurant);
+        return restaurant;
+
     }
 
     @Override
-    public Restaurant delete(Long id) {
-        return null;
+    public void delete(Long id) {
+        this.restaurantRepository.deleteById(id);
     }
 
     @Override
