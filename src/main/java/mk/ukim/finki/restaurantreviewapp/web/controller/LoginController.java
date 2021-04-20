@@ -34,10 +34,8 @@ public class LoginController {
             request.getSession().setAttribute("user", user);
             return "redirect:/loggedIn";
         }
-        catch (InvalidUserCredentialsException e) {
-            model.addAttribute("hasError", true);
-            model.addAttribute("error", e.getMessage());
-            return "login-page";
+        catch (Exception e) {
+            return "redirect:/login?error=" + e.getMessage();
         }
     }
 }
