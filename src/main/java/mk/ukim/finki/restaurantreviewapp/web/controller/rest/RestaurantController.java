@@ -57,7 +57,7 @@ public class RestaurantController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Restaurant> edit(Long id, @RequestBody RestaurantDto restaurantDto)
+    public ResponseEntity<Restaurant> edit(@PathVariable Long id, @RequestBody RestaurantDto restaurantDto)
     {
         try {
             Restaurant restaurant = this.restaurantService.update(id, restaurantDto);
@@ -70,7 +70,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Restaurant> delete(Long id)
+    public ResponseEntity<Restaurant> delete(@PathVariable Long id)
     {
         this.restaurantService.delete(id);
         try {
