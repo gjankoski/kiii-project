@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 
@@ -35,9 +36,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link"><th:block th:if="${#request.getRemoteUser() != null}" th:text="${#request.getRemoteUser()}"></th:block></a>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/profile">
+                        <th:block th:if="${#request.session.getAttribute(user)!= null}"
+                                  th:text="${#request.getSession().getAttribute(user).username}">
+                            <th:text></th:text>
+                        </th:block>
+                    </a>
                 </li>
+
                 <li class="nav-item active">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
