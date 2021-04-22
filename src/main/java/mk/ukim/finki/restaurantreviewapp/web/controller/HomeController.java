@@ -22,4 +22,9 @@ public class HomeController {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         return "logged-in-user";
     }
+
+    @GetMapping("profile")
+    public String getProfilePage(){
+        return "profile-page";
+    }
 }
