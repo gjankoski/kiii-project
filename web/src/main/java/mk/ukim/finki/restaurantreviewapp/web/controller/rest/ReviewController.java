@@ -2,8 +2,8 @@ package mk.ukim.finki.restaurantreviewapp.web.controller.rest;
 
 
 import mk.ukim.finki.restaurantreviewapp.model.Dtos.ReviewDto;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidRestaurantException;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidReviewException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidRestaurantException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidReviewException;
 import mk.ukim.finki.restaurantreviewapp.model.Review;
 import mk.ukim.finki.restaurantreviewapp.service.ReviewService;
 import org.springframework.http.ResponseEntity;

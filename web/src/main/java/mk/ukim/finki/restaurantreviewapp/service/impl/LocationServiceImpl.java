@@ -1,7 +1,7 @@
 package mk.ukim.finki.restaurantreviewapp.service.impl;
 
 import mk.ukim.finki.restaurantreviewapp.Repository.LocationRepository;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidLocationException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidLocationException;
 import mk.ukim.finki.restaurantreviewapp.model.Location;
 import mk.ukim.finki.restaurantreviewapp.service.LocationService;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package mk.ukim.finki.restaurantreviewapp.service.impl;
 
 import mk.ukim.finki.restaurantreviewapp.Repository.CategoryRepository;
 import mk.ukim.finki.restaurantreviewapp.model.Category;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidCategoryException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidCategoryException;
 import mk.ukim.finki.restaurantreviewapp.service.CategoryService;
 import org.springframework.stereotype.Service;
 

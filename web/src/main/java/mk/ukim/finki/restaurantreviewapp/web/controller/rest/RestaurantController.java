@@ -1,9 +1,10 @@
 package mk.ukim.finki.restaurantreviewapp.web.controller.rest;
 import mk.ukim.finki.restaurantreviewapp.model.Dtos.RestaurantDto;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidCategoryException;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidLocationException;
-import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidRestaurantException;
+
 import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidCategoryException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidLocationException;
+import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidRestaurantException;
 import mk.ukim.finki.restaurantreviewapp.service.RestaurantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
