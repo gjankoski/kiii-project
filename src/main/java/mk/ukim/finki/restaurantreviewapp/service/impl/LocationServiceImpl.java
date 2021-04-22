@@ -26,4 +26,9 @@ public class LocationServiceImpl implements LocationService {
     public List<Location> listAll() {
         return this.locationRepository.findAll();
     }
+
+    @Override
+    public Location create(String address, String city, String country) {
+        return this.locationRepository.save(new Location(address, city, country));
+    }
 }

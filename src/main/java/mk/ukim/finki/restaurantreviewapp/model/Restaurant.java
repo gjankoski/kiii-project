@@ -20,7 +20,7 @@ public class Restaurant {
     private int price;
     @ManyToOne
     private Category category;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     public Restaurant() {

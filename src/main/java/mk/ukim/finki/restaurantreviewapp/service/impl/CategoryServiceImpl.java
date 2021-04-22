@@ -34,4 +34,6 @@ public class CategoryServiceImpl implements CategoryService {
     public Category findById(Long id) {
         return this.categoryRepository.findById(id).orElseThrow(InvalidCategoryException::new);
     }
+
+
 }

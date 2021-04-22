@@ -2,14 +2,18 @@ package mk.ukim.finki.restaurantreviewapp.service.impl;
 
 import mk.ukim.finki.restaurantreviewapp.Repository.RestaurantRepository;
 import mk.ukim.finki.restaurantreviewapp.Repository.ReviewRepository;
+import mk.ukim.finki.restaurantreviewapp.model.Dtos.ReviewDto;
 import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidRestaurantException;
 import mk.ukim.finki.restaurantreviewapp.model.Exceptions.InvalidReviewException;
 import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
 import mk.ukim.finki.restaurantreviewapp.model.Review;
 import mk.ukim.finki.restaurantreviewapp.service.ReviewService;
+import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
@@ -27,36 +31,62 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review createReview(Long restaurantId, float rating, String comment) {
+    public Review createReview(Long restaurantId, Double rating, String comment) {
         Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
-        Review review = new Review(rating, comment);
+        Review review = new Review(rating);
+        if (comment != null && !comment.isEmpty())
+            review.setComment(comment);
         this.reviewRepository.save(review);
         restaurant.getReviews().add(review);
         this.restaurantRepository.save(restaurant);
         return review;
 
-
     }
 
     @Override
-    public Review editReview(Long restaurantId, Long id, float rating, String comment) {
+    public Review createReview(Long restaurantId, ReviewDto reviewDto) {
+        Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
+        Review review = new Review(reviewDto.getRating());
+        if (reviewDto.getComment() != null && !reviewDto.getComment().isEmpty())
+            review.setComment(reviewDto.getComment());
+        this.reviewRepository.save(review);
+        restaurant.getReviews().add(review);
+        this.restaurantRepository.save(restaurant);
+        return review;
+    }
+
+    @Override
+    public Review editReview(Long restaurantId, Long id, ReviewDto reviewDto) {
         Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
         Review review = this.reviewRepository.findById(id).orElseThrow(InvalidReviewException::new);
         restaurant.getReviews().remove(review);
-        review.setRating(rating);
-        review.setComment(comment);
+        review.setRating(reviewDto.getRating());
+        if(reviewDto.getComment() != null && !reviewDto.getComment().isEmpty())
+            review.setComment(reviewDto.getComment());
         this.reviewRepository.save(review);
         restaurant.getReviews().add(review);
         return review;
     }
 
     @Override
-    public Review deleteReview(Long restaurantId, Long id) {
+    public Review editReview(Long restaurantId, Long id, Double rating, String comment) {
         Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
         Review review = this.reviewRepository.findById(id).orElseThrow(InvalidReviewException::new);
         restaurant.getReviews().remove(review);
-        this.reviewRepository.delete(review);
+        review.setRating(rating);
+        if(comment != null && !comment.isEmpty())
+            review.setComment(comment);
+        this.reviewRepository.save(review);
+        restaurant.getReviews().add(review);
         return review;
+    }
+
+    @Override
+    public void deleteReview(Long restaurantId, Long id) {
+        Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
+        Review review = this.reviewRepository.findById(id).orElseThrow(InvalidReviewException::new);
+        restaurant.getReviews().remove(review);
+        this.reviewRepository.deleteById(id);
     }
 
     @Override

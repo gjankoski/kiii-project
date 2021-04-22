@@ -1,5 +1,6 @@
 package mk.ukim.finki.restaurantreviewapp.service;
 
+import mk.ukim.finki.restaurantreviewapp.model.Dtos.ReviewDto;
 import mk.ukim.finki.restaurantreviewapp.model.Review;
 
 import java.util.List;
@@ -10,9 +11,13 @@ public interface ReviewService {
 
     List<Review> listAllByRestaurant(Long restaurantId);
 
-    Review createReview(Long restaurantId, float rating, String comment);
+    Review createReview(Long restaurantId, Double rating, String comment);
 
-    Review editReview(Long restaurantId, Long id, float rating, String comment);
+    Review createReview(Long restaurantId, ReviewDto reviewDto);
 
-    Review deleteReview(Long restaurantId, Long id);
+    Review editReview(Long restaurantId, Long id, Double rating, String comment);
+
+    Review editReview(Long restaurantId, Long id, ReviewDto reviewDto);
+
+    void deleteReview(Long restaurantId, Long id);
 }

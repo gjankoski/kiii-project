@@ -13,17 +13,17 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private float rating;
+    private Double rating;
     private String comment;
 
     public Review() {
     }
 
-    public Review(float rating) {
+    public Review(Double rating) {
         this.rating = rating;
     }
 
-    public Review(float rating, String comment) {
+    public Review(Double rating, String comment) {
         this.rating = rating;
         this.comment = comment;
     }
@@ -36,11 +36,11 @@ public class Review {
         this.id = id;
     }
 
-    public float getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
