@@ -1,9 +1,12 @@
 import axios from '../custom-axios/axios';
 
 const appService = {
-    // listRestaurants: () => {
-    //     return axios.get("/restaurants");
-    // }
+    loginUser: (username, password) => {
+        return axios.post("/login", {
+            "username" : username,
+            "password" : password,
+        });
+    },
 }
 
 export default appService;
