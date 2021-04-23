@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 
-const login = (props) => {
+const Login = (props) => {
 
     const history = useHistory();
     const [formData, updateFormData] = React.useState({
@@ -13,7 +13,7 @@ const login = (props) => {
     const handleChange = (e) => {
         updateFormData({
             ...formData,
-            [e.target.name]: e.targer.value.trim()
+            [e.target.name]: e.target.value.trim()
         })
     }
 
@@ -37,16 +37,14 @@ const login = (props) => {
                     <input type="text" id="username" name="username" className="form-control" placeholder="Username"
                            required=""
                            autoFocus=""
-                           onChange={handleChange}>
+                           onChange={handleChange}/>
                 </p>
                 <p>
                     <label htmlFor="password" className="sr-only">Password</label>
                     <input type="password" id="password" name="password" className="form-control" placeholder="Password"
                            required=""
-                           onChange={handleChange}>
+                           onChange={handleChange}/>
                 </p>
-
-                <div th:text="${param.error}" className="text-danger"></div>
 
                 <button id="submit" className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
@@ -55,4 +53,4 @@ const login = (props) => {
     );
 }
 
-export default login;
+export default Login;
