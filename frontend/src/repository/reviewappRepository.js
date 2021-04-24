@@ -6,7 +6,7 @@ const appService = {
             "username" : username,
             "password" : password,
         });
-    },
+    }
 }
 
 export default appService;

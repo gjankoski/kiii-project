@@ -24,7 +24,6 @@ const Login = (props) => {
 
         props.onLogin(username, password);
         history.push("/loggedIn");
-
     }
 
 

@@ -29,7 +29,7 @@ class App extends Component {
                         <Route path={"/"} exact render={() =>
                             <Homepage />}/>
                         <Route path={"/login"} exact render={() =>
-                            <Login user={this.state.user} />}/>
+                            <Login onLogin={this.onLogin} />}/>
                         <Route path={"/loggedIn"} exact render={() =>
                             <LoggedIn />}/>
                         <Route path={"/profile"} exact render={() =>
@@ -58,6 +58,7 @@ class App extends Component {
                 })
             })
     }
+
 
 }
 
