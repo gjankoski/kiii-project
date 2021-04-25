@@ -13,9 +13,13 @@ public interface ReviewService {
 
     Review createReview(Long restaurantId, Double rating, String comment);
 
+    Review createReview(Long restaurantId, Double rating);
+
     Review createReview(Long restaurantId, ReviewDto reviewDto);
 
     Review editReview(Long restaurantId, Long id, Double rating, String comment);
+
+    Review editReview(Long restaurantId, Long id, Double rating)
 
     Review editReview(Long restaurantId, Long id, ReviewDto reviewDto);
 

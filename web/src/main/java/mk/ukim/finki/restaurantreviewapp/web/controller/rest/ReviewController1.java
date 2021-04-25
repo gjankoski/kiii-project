@@ -15,11 +15,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/reviews")
 
-public class ReviewController {
+public class ReviewController1 {
 
     private final ReviewService reviewService;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController1(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 

@@ -41,5 +41,7 @@ public class DataInitializer {
         }
 
         this.reviewService.createReview(1L,  10.0, "blabla");
+        this.reviewService.createReview(1L,  15.0, "blabla");
+        this.reviewService.createReview(1L,  16.0, "blabla");
     }
 }

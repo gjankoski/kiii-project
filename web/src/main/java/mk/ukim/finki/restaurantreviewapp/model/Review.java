@@ -21,6 +21,7 @@ public class Review {
 
     public Review(Double rating) {
         this.rating = rating;
+        this.comment = "";
     }
 
     public Review(Double rating, String comment) {

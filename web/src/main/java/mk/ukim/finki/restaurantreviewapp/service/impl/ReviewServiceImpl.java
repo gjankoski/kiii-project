@@ -33,9 +33,18 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review createReview(Long restaurantId, Double rating, String comment) {
         Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
+        Review review = new Review(rating,comment);
+        this.reviewRepository.save(review);
+        restaurant.getReviews().add(review);
+        this.restaurantRepository.save(restaurant);
+        return review;
+
+    }
+
+    @Override
+    public Review createReview(Long restaurantId, Double rating) {
+        Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
         Review review = new Review(rating);
-        if (comment != null && !comment.isEmpty())
-            review.setComment(comment);
         this.reviewRepository.save(review);
         restaurant.getReviews().add(review);
         this.restaurantRepository.save(restaurant);
@@ -68,14 +77,25 @@ public class ReviewServiceImpl implements ReviewService {
         return review;
     }
 
+
+    @Override
+    public Review editReview(Long restaurantId, Long id, Double rating) {
+        Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
+        Review review = this.reviewRepository.findById(id).orElseThrow(InvalidReviewException::new);
+        restaurant.getReviews().remove(review);
+        review.setRating(rating);
+        this.reviewRepository.save(review);
+        restaurant.getReviews().add(review);
+        return review;
+    }
+
     @Override
     public Review editReview(Long restaurantId, Long id, Double rating, String comment) {
         Restaurant restaurant = this.restaurantRepository.findById(restaurantId).orElseThrow(InvalidRestaurantException::new);
         Review review = this.reviewRepository.findById(id).orElseThrow(InvalidReviewException::new);
         restaurant.getReviews().remove(review);
         review.setRating(rating);
-        if(comment != null && !comment.isEmpty())
-            review.setComment(comment);
+        review.setComment(comment);
         this.reviewRepository.save(review);
         restaurant.getReviews().add(review);
         return review;

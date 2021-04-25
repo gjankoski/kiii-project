@@ -15,11 +15,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/restaurants")
 
-public class RestaurantController {
+public class RestaurantController1 {
 
     private final RestaurantService restaurantService;
 
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController1(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
 
