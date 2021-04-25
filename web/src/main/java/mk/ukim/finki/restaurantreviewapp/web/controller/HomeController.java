@@ -24,7 +24,14 @@ public class HomeController {
     }
 
     @GetMapping("profile")
-    public String getProfilePage(){
+    public String getProfilePage(Model model, HttpServletRequest request){
+        model.addAttribute("user", request.getSession().getAttribute("user"));
         return "profile-page";
+    }
+
+    @GetMapping("addnewrestaurant")
+    public String getAddNewRestaurantPage(Model model, HttpServletRequest request) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
+        return "add-new-restaurant";
     }
 }

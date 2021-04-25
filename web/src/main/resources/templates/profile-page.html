@@ -52,19 +52,36 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-        <p class="lead"><b>Profile username</b></p>
+        <p class="lead"><b>User: <th:block th:text="${#request.getSession().getAttribute(user).username}">
+            <th:text></th:text>
+        </th:block></b></p>
     </header>
 
 
     <div class="row">
         <div class="breadcrumb col-md-3 ml-3" style="height: 15em;">
-            <p class="lead">Profile info</p>
+            <p class="lead">Profile info </p>
+            <br/>
+            <p>Name: <th:block th:text="${#request.getSession().getAttribute(user).name}">
+            </th:block>
+            </p>
+            <br/>
+            <p>Last name: <th:block th:text="${#request.getSession().getAttribute(user).lastName}">
+            </th:block>
+            </p>
+            <br/>
+            <p>City: <th:block th:text="${#request.getSession().getAttribute(user).city}">
+            </th:block>
+            </p>
+            <br/>
+            <p>Country: <th:block th:text="${#request.getSession().getAttribute(user).country}">
+            </th:block>
+            </p>
         </div>
 
         <div class="breadcrumb col-md-8 ml-5">
-            <div class="btn-group-vertical col-md-12" style="height: 10em; margin: auto;">
-                <button type="button" class="btn btn-secondary m-2">Add new restaurant</button>
-                <button type="button" class="btn btn-secondary m-2">Write a review</button>
+            <div class="btn-group-vertical col-md-12" style="height: 5em; margin: auto;">
+                <button type="button" class="btn btn-secondary m-2"><a href="/addnewrestaurant" style="text-decoration: none; color: white">Add new restaurant</a></button>
             </div>
         </div>
     </div>
