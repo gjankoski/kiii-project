@@ -88,4 +88,10 @@ public class RestaurantController {
         return "redirect:/loggedIn";
     }
 
+    @GetMapping("/showRestaurant/{id}")
+    public String showRestaurant(@PathVariable Long id, Model model) {
+        Restaurant restaurant = this.restaurantService.findById(id);
+        model.addAttribute("restaurant", restaurant);
+        return "restaurant-page";
+    }
 }

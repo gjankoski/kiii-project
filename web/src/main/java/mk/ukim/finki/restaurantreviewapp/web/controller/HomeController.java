@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,8 @@ public class HomeController {
     @GetMapping("loggedIn")
     public String getLoggedInPage(Model model, HttpServletRequest request) {
         model.addAttribute("user", request.getSession().getAttribute("user"));
+        List<Restaurant> restaurants = new ArrayList<>();
+        model.addAttribute("restaurants", restaurants);
         return "logged-in-user";
     }
 
@@ -44,4 +47,5 @@ public class HomeController {
         model.addAttribute("user", request.getSession().getAttribute("user"));
         return "add-new-restaurant";
     }
+
 }
