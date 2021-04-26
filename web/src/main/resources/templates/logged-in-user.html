@@ -63,16 +63,45 @@
         </div>
 
         <div class="row">
-            <form class="form-inline col-md-6 mb-5">
+            <form class="form-inline col-md-6 mb-5" action="/restaurants/search" method="post">
                 <div class="input-group mt-4">
                     <input type="email" class="form-control" size="50" placeholder="Write a name..." required>
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </div>
             </form>
         </div>
     </header>
+
+    <div th:if="${restaurants.size() != null}">
+        <div class="row col-md-6 mt-5">
+            <p class="lead">Search results:</p>
+        </div>
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <div class="col-lg-3 col-md-6 mb-4" th:each="restaurant : ${restaurants}">
+                <div class="card h-100">
+                    <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title" th:text="${restaurant.getName()}"></h4>
+<!--                        <p class="card-text" th:text="${restaurant.getLocation().getCity()}"></p>-->
+<!--                        <p class="card-text" th:text="${restaurant.getLocation().getCountry()}"></p>-->
+                        <p class="card-text" th:text="${restaurant.getDescription()}"></p>
+                    </div>
+                    <div class="card-footer">
+                        <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
+                        <p class="card-text" th:text="${restaurant.getRating()}">Rating: </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
 
     <div class="row mt-5">
         <div class="col-md-2">
@@ -158,130 +187,7 @@
     </div>
     <!-- /.row -->
 
-    <div class="row col-md-6 mt-5">
-        <p class="lead">Search results:</p>
-    </div>
 
-    <!-- Page Features -->
-    <div class="row text-center">
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row text-center">
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Restaurant name</h4>
-                    <p class="card-text">Location and description</p>
-                </div>
-                <div class="card-footer">
-                    <!-- <a href="#" class="btn btn-primary">Find Out More!</a> -->
-                    <p class="card-text">Rating: </p>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 <!-- /.container -->
 

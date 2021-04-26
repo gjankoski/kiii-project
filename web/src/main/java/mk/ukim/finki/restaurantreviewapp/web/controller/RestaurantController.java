@@ -58,7 +58,7 @@ public class RestaurantController {
                                 )
     {
         this.restaurantService.create(name, description, delivery, price, locationId, categoryId);
-        return "redirect:/homepage.html";
+        return "redirect:/loggedIn";
     }
     @PostMapping("/edit/{id}")
     public String editRestaurant(@PathVariable Long id,
@@ -73,19 +73,19 @@ public class RestaurantController {
         this.restaurantService.update(id, name, description, delivery, price, locationId, categoryId);
         return "redirect:/homepage.html";
     }
-    @GetMapping("/topRated")
-    public String topRatedRestaurants(Model model)
-    {
-        List<Restaurant> restaurants = this.restaurantService.listTopRatedRestaurants();
-        model.addAttribute(restaurants);
-        return "redirect:/homepage.html";
-    }
+//    @GetMapping("/topRated")
+//    public String topRatedRestaurants(Model model)
+//    {
+//        List<Restaurant> restaurants = this.restaurantService.listTopRatedRestaurants();
+//        model.addAttribute(restaurants);
+//        return "redirect:/home";
+//    }
     @PostMapping("/search")
     public String searchRestaurant(@RequestParam(required = true) String name, Model model)
     {
         List<Restaurant> restaurants = this.restaurantService.searchByName(name);
         model.addAttribute("restaurants", restaurants);
-        return "redirect:/homepage.html";
+        return "redirect:/loggedIn";
     }
 
 }
