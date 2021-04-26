@@ -4,6 +4,7 @@ package mk.ukim.finki.restaurantreviewapp.web.controller;
 import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
 import mk.ukim.finki.restaurantreviewapp.service.CategoryService;
 import mk.ukim.finki.restaurantreviewapp.service.RestaurantService;
+import org.h2.engine.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +71,20 @@ public class RestaurantController {
     )
     {
         this.restaurantService.update(id, name, description, delivery, price, locationId, categoryId);
+        return "redirect:/homepage.html";
+    }
+    @GetMapping("/topRated")
+    public String topRatedRestaurants(Model model)
+    {
+        List<Restaurant> restaurants = this.restaurantService.listTopRatedRestaurants();
+        model.addAttribute(restaurants);
+        return "redirect:/homepage.html";
+    }
+    @PostMapping("/search")
+    public String searchRestaurant(@RequestParam(required = true) String name, Model model)
+    {
+        List<Restaurant> restaurants = this.restaurantService.searchByName(name);
+        model.addAttribute("restaurants", restaurants);
         return "redirect:/homepage.html";
     }
 

@@ -6,6 +6,7 @@ import mk.ukim.finki.restaurantreviewapp.Repository.RestaurantRepository;
 import mk.ukim.finki.restaurantreviewapp.Repository.ReviewRepository;
 import mk.ukim.finki.restaurantreviewapp.model.Category;
 import mk.ukim.finki.restaurantreviewapp.model.Dtos.RestaurantDto;
+import mk.ukim.finki.restaurantreviewapp.model.Review;
 import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidCategoryException;
 import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidLocationException;
 import mk.ukim.finki.restaurantreviewapp.model.exceptions.InvalidRestaurantException;
@@ -14,7 +15,11 @@ import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
 import mk.ukim.finki.restaurantreviewapp.service.RestaurantService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -100,7 +105,22 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> listTopRatedRestaurants() {
-        return null;
+        List<Restaurant> restaurants = this.restaurantRepository.findAll();
+        for(Restaurant restaurant : restaurants)
+        {
+            List<Review> reviews = restaurant.getReviews();
+            Double sum = 0.0;
+            int count = 0;
+            for(Review review : reviews)
+            {
+                count++;
+                sum+=review.getRating();
+            }
+            restaurant.setRating(sum/count);
+        }
+        Comparator<Restaurant> comparator = Comparator.comparing(Restaurant::getRating);
+        restaurants.sort(comparator.reversed());
+        return restaurants.stream().limit(4).collect(Collectors.toList());
     }
 
     @Override
@@ -111,5 +131,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> listExpensiveRestaurants() {
         return null;
+    }
+
+    @Override
+    public List<Restaurant> searchByName(String name) {
+        return this.restaurantRepository.findAllByNameLike("%" + name + "%");
     }
 }

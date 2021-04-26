@@ -19,7 +19,7 @@ public interface ReviewService {
 
     Review editReview(Long restaurantId, Long id, Double rating, String comment);
 
-    Review editReview(Long restaurantId, Long id, Double rating)
+    Review editReview(Long restaurantId, Long id, Double rating);
 
     Review editReview(Long restaurantId, Long id, ReviewDto reviewDto);
 

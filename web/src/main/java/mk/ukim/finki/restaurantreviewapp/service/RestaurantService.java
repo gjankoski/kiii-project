@@ -29,4 +29,6 @@ public interface RestaurantService {
 
     List<Restaurant> listExpensiveRestaurants();
 
+    List<Restaurant> searchByName(String name);
+
 }

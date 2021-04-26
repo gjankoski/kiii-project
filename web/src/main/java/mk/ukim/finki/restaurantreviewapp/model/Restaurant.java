@@ -22,6 +22,7 @@ public class Restaurant {
     private Category category;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Review> reviews;
+    double rating;
 
     public Restaurant() {
     }
@@ -98,5 +99,13 @@ public class Restaurant {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
