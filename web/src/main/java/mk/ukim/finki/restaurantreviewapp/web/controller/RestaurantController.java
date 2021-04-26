@@ -80,11 +80,11 @@ public class RestaurantController {
 //        return "redirect:/home";
 //    }
     @PostMapping("/loggedIn")
-    public String searchRestaurant(@RequestParam(required = true) String name, Model model)
+    public String searchRestaurant(@RequestParam(required = false) String name, Model model)
     {
         List<Restaurant> restaurants = this.restaurantService.searchByName(name);
         model.addAttribute("restaurants", restaurants);
-        return "redirect:/logged-in-user";
+        return "redirect:/loggedIn";
     }
 
     @GetMapping("/showRestaurant/{id}")
