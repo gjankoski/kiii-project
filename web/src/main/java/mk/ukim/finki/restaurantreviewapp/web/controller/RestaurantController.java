@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/restaurants")
 public class RestaurantController {
     private final RestaurantService restaurantService;
     private final CategoryService categoryService;
@@ -22,19 +21,19 @@ public class RestaurantController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping("/restaurants")
     public String getRestaurants(Model model)
     {
         List<Restaurant> restaurants = this.restaurantService.listAll();
         model.addAttribute("restaurants", restaurants);
         return "homepage.html";
     }
-    @GetMapping("/add")
+    @GetMapping("/restaurants/add")
     public String showAdd()
     {
         return "add-new-restaurant.html";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/restaurants/edit/{id}")
     public String showEdit(@PathVariable Long id, Model model)
     {
         Restaurant restaurant = this.restaurantService.findById(id);
@@ -42,13 +41,13 @@ public class RestaurantController {
         return "add-new-restaurant.html";
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/restaurants/delete/{id}")
     public String deleteRestaurant(@PathVariable Long id)
     {
         this.restaurantService.delete(id);
         return "redirect:/homepage.html";
     }
-    @PostMapping("/add")
+    @PostMapping("/restaurants/add")
     public String addRestaurant(@RequestParam String name,
                                 @RequestParam String description,
                                 @RequestParam Long categoryId,
@@ -60,7 +59,7 @@ public class RestaurantController {
         this.restaurantService.create(name, description, delivery, price, locationId, categoryId);
         return "redirect:/loggedIn";
     }
-    @PostMapping("/edit/{id}")
+    @PostMapping("/restaurants/edit/{id}")
     public String editRestaurant(@PathVariable Long id,
                                  @RequestParam String name,
                                 @RequestParam String description,
@@ -80,12 +79,12 @@ public class RestaurantController {
 //        model.addAttribute(restaurants);
 //        return "redirect:/home";
 //    }
-    @PostMapping("/search")
+    @PostMapping("/loggedIn")
     public String searchRestaurant(@RequestParam(required = true) String name, Model model)
     {
         List<Restaurant> restaurants = this.restaurantService.searchByName(name);
         model.addAttribute("restaurants", restaurants);
-        return "redirect:/loggedIn";
+        return "redirect:/logged-in-user";
     }
 
     @GetMapping("/showRestaurant/{id}")

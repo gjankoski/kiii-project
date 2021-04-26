@@ -35,6 +35,7 @@ public class Restaurant {
         this.location = location;
         this.category = category;
         this.reviews = new ArrayList<>();
+        rating = 0.0;
     }
 
     public Long getId() {
