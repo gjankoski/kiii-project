@@ -1,7 +1,7 @@
 package mk.ukim.finki.restaurantreviewapp.web.controller;
 
 
-import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
+/*import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
 import mk.ukim.finki.restaurantreviewapp.service.CategoryService;
 import mk.ukim.finki.restaurantreviewapp.service.RestaurantService;
 import org.h2.engine.Mode;
@@ -94,3 +94,4 @@ public class RestaurantController {
         return "restaurant-page";
     }
 }
+*/

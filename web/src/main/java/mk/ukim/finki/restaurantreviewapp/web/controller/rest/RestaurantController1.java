@@ -1,4 +1,6 @@
 package mk.ukim.finki.restaurantreviewapp.web.controller.rest;
+import mk.ukim.finki.restaurantreviewapp.Repository.RestaurantExample;
+import mk.ukim.finki.restaurantreviewapp.Repository.RestaurantRepository;
 import mk.ukim.finki.restaurantreviewapp.model.Dtos.RestaurantDto;
 
 import mk.ukim.finki.restaurantreviewapp.model.Restaurant;
@@ -18,15 +20,43 @@ import java.util.List;
 public class RestaurantController1 {
 
     private final RestaurantService restaurantService;
+    private final RestaurantRepository restaurantRepository;
 
-    public RestaurantController1(RestaurantService restaurantService) {
+    public RestaurantController1(RestaurantService restaurantService
+    , RestaurantRepository restaurantRepository)
+    {
         this.restaurantService = restaurantService;
+        this.restaurantRepository = restaurantRepository;
     }
 
     @GetMapping
     public List<Restaurant> findAll()
     {
         return this.restaurantService.listAll();
+    }
+
+    @GetMapping("/testing")
+    public Restaurant getAll() {
+        return this.restaurantRepository.getFirstRestaurant();
+    }
+
+    @GetMapping("/testing1")
+    public List<Restaurant> getAllCat() {
+        return this.restaurantRepository.getCategoryRestaurant();
+    }
+
+//    @GetMapping("/testing2")
+//    public List<RestaurantExample> getAllExmCat() {
+//        return this.restaurantRepository.getMegaExampl();
+//    }
+
+    @GetMapping("/topRated")
+    public List<Restaurant> findTopRated() {
+        return this.restaurantService.listTopRatedRestaurants();
+    }
+
+    @GetMapping("/testroute") List<Restaurant> findAllByReviews() {
+        return this.restaurantService.findAllByReviews();
     }
 
     @GetMapping("/{id}")

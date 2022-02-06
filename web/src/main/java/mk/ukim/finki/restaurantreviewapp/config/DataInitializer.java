@@ -37,11 +37,18 @@ public class DataInitializer {
         for (int i=0; i<5; i++)
         {
             this.restaurantService.create("restaurant" + i, "restaurant decription" + i, true, 5000+i,
-                    1L, 2L);
+                    "goce delcev" +i, "ohrid", "makedonija", 2L);
         }
 
+        this.restaurantService.create("restaurant", "restaurant decription", true, 5000,
+                "goce ccv", "qwe", "asd", 2L);
+
         this.reviewService.createReview(1L,  10.0, "blabla");
-        this.reviewService.createReview(1L,  15.0, "blabla");
-        this.reviewService.createReview(1L,  16.0, "blabla");
+        this.reviewService.createReview(2L,  15.0, "blabla");
+        this.reviewService.createReview(3L,  16.0, "blabla");
+        this.reviewService.createReview(2L,  100.0, "blabla");
+        this.reviewService.createReview(3L,  200.0, "blabla");
+        this.reviewService.createReview(1L,  300.0, "blabla");
+        this.reviewService.createReview(3L,  400.0, "blabla");
     }
 }

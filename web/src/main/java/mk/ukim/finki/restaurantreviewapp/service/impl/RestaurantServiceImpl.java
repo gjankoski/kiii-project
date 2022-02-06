@@ -48,8 +48,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant create(String name, String description, boolean delivery, int price, Long locationId, Long categoryId) {
-        Location location = this.locationRepository.findById(locationId).orElseThrow(InvalidLocationException::new);
+    public Restaurant create(String name, String description, boolean delivery, int price, String address, String city, String country, Long categoryId) {
+        Location location = new Location(address, city, country);
+        this.locationRepository.save(location);
         Category category = this.categoryRepository.findById(categoryId).orElseThrow(InvalidCategoryException::new);
         Restaurant restaurant = new Restaurant(name,description,delivery, price, location, category);
         this.restaurantRepository.save(restaurant);
@@ -58,7 +59,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant create(RestaurantDto restaurantDto) {
-        Location location = this.locationRepository.findById(restaurantDto.getLocationId()).orElseThrow(InvalidLocationException::new);
+        Location location = new Location(restaurantDto.getAddress(), restaurantDto.getCity(), restaurantDto.getCountry());
+        this.locationRepository.save(location);
         Category category = this.categoryRepository.findById(restaurantDto.getCategoryId()).orElseThrow(InvalidCategoryException::new);
         Restaurant restaurant = new Restaurant(restaurantDto.getName(), restaurantDto.getDescription(),
                 restaurantDto.isDelivery(), restaurantDto.getPrice(), location, category);
@@ -69,7 +71,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant update(Long id, RestaurantDto restaurantDto) {
         Restaurant restaurant = this.restaurantRepository.findById(id).orElseThrow(InvalidRestaurantException::new);
-        Location location = this.locationRepository.findById(restaurantDto.getLocationId()).orElseThrow(InvalidLocationException::new);
+        Location location = this.locationRepository.findByAddressAndCityAndCountry(restaurantDto.getAddress(), restaurantDto.getCity(), restaurantDto.getCountry());
+        if (location == null) {
+            location = new Location(restaurantDto.getAddress(), restaurantDto.getCity(), restaurantDto.getCountry());
+            this.locationRepository.save(location);
+        }
         Category category = this.categoryRepository.findById(restaurantDto.getCategoryId()).orElseThrow(InvalidCategoryException::new);
         restaurant.setName(restaurantDto.getName());
         restaurant.setDescription(restaurantDto.getDescription());
@@ -83,9 +89,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant update(Long id, String name, String description, boolean delivery, int price, Long locationId, Long categoryId) {
+    public Restaurant update(Long id, String name, String description, boolean delivery, int price, String address, String city, String country, Long categoryId) {
         Restaurant restaurant = this.restaurantRepository.findById(id).orElseThrow(InvalidRestaurantException::new);
-        Location location = this.locationRepository.findById(locationId).orElseThrow(InvalidLocationException::new);
+        Location location = this.locationRepository.findByAddressAndCityAndCountry(address, city, country);
+        if (location == null) {
+            location = new Location(address, city, country);
+            this.locationRepository.save(location);
+        }
         Category category = this.categoryRepository.findById(categoryId).orElseThrow(InvalidCategoryException::new);
         restaurant.setName(name);
         restaurant.setDescription(description);
@@ -136,5 +146,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> searchByName(String name) {
         return this.restaurantRepository.findAllByNameLike("%" + name + "%");
+    }
+
+    @Override
+    public List<Restaurant> findAllByReviews() {
+        List<Review> reviewList = this.reviewRepository.findAllById(List.of(1L, 2L));
+        return this.restaurantRepository.findAllByReviewsIn(reviewList);
     }
 }
