@@ -78,6 +78,9 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>
+            restaurant-review
+        </finalName>
     </build>
 
 </project>

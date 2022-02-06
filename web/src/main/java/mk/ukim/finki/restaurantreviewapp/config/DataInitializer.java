@@ -44,11 +44,5 @@ public class DataInitializer {
                 "goce ccv", "qwe", "asd", 2L);
 
         this.reviewService.createReview(1L,  10.0, "blabla");
-        this.reviewService.createReview(2L,  15.0, "blabla");
-        this.reviewService.createReview(3L,  16.0, "blabla");
-        this.reviewService.createReview(2L,  100.0, "blabla");
-        this.reviewService.createReview(3L,  200.0, "blabla");
-        this.reviewService.createReview(1L,  300.0, "blabla");
-        this.reviewService.createReview(3L,  400.0, "blabla");
     }
 }
