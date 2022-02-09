@@ -17,8 +17,7 @@ public class Location {
     private String city;
     private String country;
 
-    public Location() {
-    }
+    public Location() {}
 
     public Location(String address, String city, String country) {
         this.address = address;
